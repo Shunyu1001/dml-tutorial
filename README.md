@@ -18,17 +18,41 @@ The tutorial has 7 sections:
 6. Monte Carlo simulation: how nuisance learner choice affects DML
 7. Discussion and takeaways
 
+## Key Results
+
+The notebook includes three visualizations and a Monte Carlo simulation that compares four ML learners (Lasso, Random Forest, Gradient Boosting, Neural Network) under two DGPs.
+
+**Sparse DGP (p = 50, linear):**
+
+| Learner | Bias | RMSE | 95% CI Coverage |
+|---|---|---|---|
+| Lasso | -0.059 | 0.128 | 90% |
+| Random Forest | +0.349 | 0.385 | 20% |
+| Gradient Boosting | +0.042 | 0.191 | 90% |
+| Neural Network | +5.302 | 5.388 | 0% |
+
+**Smooth DGP (p = 10, nonlinear):**
+
+| Learner | Bias | RMSE | 95% CI Coverage |
+|---|---|---|---|
+| Lasso | -0.035 | 0.143 | 100% |
+| Random Forest | -0.035 | 0.165 | 90% |
+| Gradient Boosting | +0.017 | 0.231 | 90% |
+| Neural Network | -0.388 | 0.442 | 50% |
+
+The main takeaway: learner choice matters a lot. When the learner does not fit the DGP well, the product rate condition fails, and DML gives large bias and poor coverage.
+
 ## How to Run
 
-Open `tutorial.ipynb` in Jupyter Notebook or JupyterLab.
+Open `tutorial.ipynb` in Jupyter Notebook or JupyterLab. The notebook already contains all outputs, so you can read it without running any code.
 
-Requirements:
+To rerun from scratch:
 
 ```
 pip install numpy pandas scikit-learn matplotlib lightgbm
 ```
 
-The notebook runs from top to bottom. Section 6 (Monte Carlo simulation) takes a few minutes.
+The notebook runs from top to bottom. Section 6 (Monte Carlo simulation with 10 repetitions) takes about 1 minute.
 
 ## References
 
